@@ -1,0 +1,118 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Editor.gd" type="Script" id=1]
+[ext_resource path="res://DeleteIcon.png" type="Texture" id=2]
+[ext_resource path="res://TimelineIcon.png" type="Texture" id=3]
+[ext_resource path="res://FolderIcon.png" type="Texture" id=4]
+[ext_resource path="res://DragTree.gd" type="Script" id=5]
+[ext_resource path="res://RobotoMono-Regular.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.101961, 0.105882, 0.12549, 1 )
+
+[sub_resource type="Theme" id=2]
+Tree/constants/draw_guides = 1
+Tree/constants/hseparation = 4
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 6 )
+
+[node name="Editor" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 593.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+margin_right = 1010.0
+margin_bottom = 20.0
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 141.0
+margin_bottom = 20.0
+text = "Load Dialogic Folder"
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 145.0
+margin_right = 965.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="SyncButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 969.0
+margin_right = 1010.0
+margin_bottom = 20.0
+text = "Sync"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 1010.0
+margin_bottom = 586.0
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="HBoxContainer" type="HSplitContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
+margin_right = 1010.0
+margin_bottom = 562.0
+
+[node name="Tree" type="Tree" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+margin_right = 1010.0
+margin_bottom = 562.0
+rect_min_size = Vector2( 199, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 2 )
+allow_reselect = true
+allow_rmb_select = true
+drop_mode_flags = 1
+script = ExtResource( 5 )
+
+[node name="Editor" type="TextEdit" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+visible = false
+margin_left = 211.0
+margin_right = 1010.0
+margin_bottom = 562.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 8.0
+custom_fonts/font = SubResource( 3 )
+text = "Testing"
+show_line_numbers = true
+draw_tabs = true
+
+[node name="FileDialog" type="FileDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -200.0
+margin_right = 250.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 500, 400 )
+window_title = "Open Dialogic Data Root Folder"
+resizable = true
+mode_overrides_title = false
+mode = 2
+access = 2
+current_dir = "/"
+current_path = "/"
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+margin_right = 20.0
+margin_bottom = 20.0
+items = [ "New Folder", ExtResource( 4 ), 0, false, false, 0, 0, null, "", false, "New Timeline", ExtResource( 3 ), 0, false, false, 1, 0, null, "", false, "Delete", ExtResource( 2 ), 0, false, false, 2, 0, null, "", false, "", null, 0, false, true, 99, 0, null, "", true, "Close", null, 0, false, false, 3, 0, null, "", false ]
